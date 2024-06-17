@@ -2,16 +2,16 @@
 
 This repository contains all the public projects/repositories I collaborated with.
 
-## Projects/Repositories
+# Projects/Repositories
 
-1. **[Ranky][https://github.com/MKGF/Ranky]** - Bot Discord, Java Application. Here is my contribution:
+## 1. **[Ranky][https://github.com/MKGF/Ranky]** - Bot Discord, Java Application.
 
-### Infrastructure Creation
+#### Infrastructure Creation
 
 I orchestrated the deployment of AWS infrastructure using Terraform, focusing on provisioning key components:
 
 - **IAM:**
-  - Creation of SSH key pair for EC2 instances, managed via GitHub Actions pipeline as `github.secret`.
+  - Creation of SSH key pair for EC2 instances and printing it to a file via CLI.
   - Configuration of IAM roles and policies made for EC2 instance.
 
 - **Networking:**
@@ -30,6 +30,7 @@ I orchestrated the deployment of AWS infrastructure using Terraform, focusing on
     - Installation and activation of Docker.
     - Authentication with ECR to pull the pre-uploaded Docker image from the repository.
     - Execution of the application.
+  - Saving the EC2 public IP to a file via CLI, enabling future connections.
 
 ### Pipeline Creation
 
@@ -41,8 +42,9 @@ I orchestrated the deployment of AWS infrastructure using Terraform, focusing on
     - Generation of secret files to enable later Terraform execution.
     - JDK setup (matching the version used in the Dockerfile's base image).
     - Test execution and JAR file compilation, moved to a Terraform-accessible directory for subsequent ECR upload.
-    - Creation of an S3 bucket to store the `terraform.tfstate` file generated during `terraform apply`.
-    - Terraform execution and upload of `terraform.tfstate` to S3 for state management.
+    - Creation of an S3 bucket to store several files needed for next steps/workflows.
+    - Terraform execution.
+    - Upload of `terraform.tfstate`, `EC2 SSH key pair`, and `EC2 public IP` to S3 for state management and enabling future connections.
 
 - **[AWS Destroy Infrastructure Pipeline][aws-destroy.yml]:**
   - Designed to automate the destruction of AWS infrastructure once the Free Tier period ends or the project no longer requires cloud hosting.
