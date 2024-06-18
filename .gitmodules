@@ -1,4 +1,4 @@
 [submodule "MKGF/Ranky"]
 	path = MKGF/Ranky
 	url = https://github.com/MKGF/Ranky.git
-	branch = master
+	branch = develop
